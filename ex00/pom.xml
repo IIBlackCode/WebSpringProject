@@ -8,7 +8,7 @@
 	<name>ex00</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
-	<!-- Properties 수정 42page 20190526 -->
+	<!-- Properties 수정 42page, 73page 20190526 -->
 	<!-- <properties> <java-version>1.6</java-version> <org.springframework-version>3.1.1.RELEASE</org.springframework-version> 
 		<org.aspectj-version>1.6.10</org.aspectj-version> <org.slf4j-version>1.6.6</org.slf4j-version> 
 		</properties> -->
@@ -123,12 +123,21 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- pom.xml파일 depandency 추가 page72 -->
+		<!-- pom.xml파일 depandency 추가 page72 20190526 -->
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.16</version>
+			<version>5.1.41</version>
+		</dependency>
+
+		<!-- pom.xml파일 depandency 추가 page 74 MySQLConnectioncTest 추가 20190526 -->
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
 		</dependency>
 
 
