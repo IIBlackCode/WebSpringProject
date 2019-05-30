@@ -98,13 +98,9 @@
 
 		<!-- Servlet -->
 		<!-- [page 119] Servlet before -->
-		<!-- <dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-			<scope>provided</scope>
-		</dependency> -->
-		<!-- [page 119] Servlet After-->
+		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> 
+			<version>2.5</version> <scope>provided</scope> </dependency> -->
+		<!-- [page 119] Servlet After -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -180,6 +176,19 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.9</version>
+		</dependency>
+		
+		<!-- 
+			[page 138] log 보기위해 등록
+			1.pom.xml에 등록
+			2.root-context.xml의 datasource에서 driverClassName과 url 수정
+			3.src/main/resources에 log4jdbc.log4j2.properties파일과 logback.xml파일 추가
+		-->
+		<!-- https://mvnrepository.com/artifact/org.bgee.log4jdbc-log4j2/log4jdbc-log4j2-jdbc4.1 -->
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
+			<version>1.16</version>
 		</dependency>
 
 
