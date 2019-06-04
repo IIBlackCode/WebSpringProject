@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!--[page 86] dataSource 설정, spring-jdbc 모듈 사용, spring 에서 jdbc 를 통해 mysql 에 접속할 수 있게 함 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    
+        <!-- 
+        	[page 139] log4j를 사용하기 위해 driverClassName, url 변경 
+        	1.pom.xml에 등록
+			2.root-context.xml의 datasource에서 driverClassName과 url 수정
+			3.src/main/resources에 log4jdbc.log4j2.properties파일과 logback.xml파일 추가
+        -->
+        <!-- <property name="driverClassName" value="com.mysql.jdbc.Driver"/> -->
+        <!-- <property name="url" value="jdbc:mysql://127.0.0.1:3306/book_ex?useSSL=false"/> -->
+        <property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+        <property name="url" value="jdbc:log4jdbc:mysql://127.0.0.1:3306/book_ex"></property>
+        
+        <property name="username" value="zerock"></property>
+        <property name="password" value="zerock"></property>
+    </bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		
+		<property name="dataSource" ref="dataSource"></property>
+		
+		<!-- [page 93 Mybatis Test Code : MybatisTest.class] -->
+		<property name="configLocation" 
+			value="classpath:/mybatis-config.xml"></property>
+		
+		<!-- [page 132] 20190530-->
+		<property name="mapperLocations" 
+			value="classpath:mappers/**/*Mapper.xml"></property>
+	</bean>
+	
+	<!-- 
+		[page 134] sqlSession 추가 Test code : MemberDAOimpl 
+		SQL문 실행할 sqlSession추가해서 DAO를 구현한 클래스에서 동작한다.
+	-->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" 
+		destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"> 
+		</constructor-arg>
+	</bean>
+	
+	<!-- 
+		[page 139] org.zerock.persistence를 스캔해서 @Repository 등록
+		@Repository에서 sqlSession으로 SQL쿼리 동작
+	-->
+	<context:component-scan base-package="org.zerock.persistence" />
+	
+	
+</beans>
+
