@@ -7,7 +7,7 @@
 // 1. Interface로 실행할 작업 등록
 // 2. 실행할 쿼리문 Mapper 등록
 // 3. 해당 인터페이스를 Overriding으로 구현
--->
+--> 
 <mapper namespace="org.zerock.mapper.MemberMapper">
  
  	<select id="getTime" resultType="string">
