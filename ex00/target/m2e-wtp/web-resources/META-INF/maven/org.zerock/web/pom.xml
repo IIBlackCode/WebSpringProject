@@ -98,8 +98,12 @@
 
 		<!-- Servlet -->
 		<!-- [page 119] Servlet before -->
-		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>servlet-api</artifactId> 
-			<version>2.5</version> <scope>provided</scope> </dependency> -->
+		<!-- <dependency> 
+				<groupId>javax.servlet</groupId> 
+				<artifactId>servlet-api</artifactId> 
+				<version>2.5</version> 
+				<scope>provided</scope> 
+			</dependency> -->
 		<!-- [page 119] Servlet After -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -175,7 +179,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.9</version>
+			<version>2.9.10.1</version>
 		</dependency>
 		
 		<!-- 
