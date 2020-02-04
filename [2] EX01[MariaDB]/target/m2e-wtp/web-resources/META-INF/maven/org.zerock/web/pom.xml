@@ -167,6 +167,7 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- [8] 159. PAGE 확인 -->
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
