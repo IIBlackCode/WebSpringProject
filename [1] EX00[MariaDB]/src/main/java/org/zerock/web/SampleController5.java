@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.ProductVO;
 
@@ -25,13 +26,18 @@ public class SampleController5 {
 	}
 	
 	@RequestMapping("doJSON_TEST")
-	public @ResponseBody ProductVO doJSON_TEST() {
-
+//	public @ResponseBody ProductVO doJSON_TEST() {
+	public @ResponseBody ModelAndView doJSON_TEST() {
+		
+		ModelAndView model = new ModelAndView();
+		
+		
 		loggerTest("SampleController5/doJSON_TEST");
 		
 		ProductVO vo = new ProductVO("Sample Product", 9999990);
+		model.addObject("productVO", vo);
 		
-		return vo;
+		return model;
 		
 	}
 	
