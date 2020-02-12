@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+*{border: 1px solid black;} 
+
+/*레이아웃*/
+#wrap 
+	{
+		width: 1300px; 
+		height: 1000px; 
+		background: #ccc;
+		margin: 0 auto;
+	}
+	
+#left
+	{
+		width: 150px;
+		height : auto;
+		background: #aa5528;
+		margin-left: 0px;
+	}
+#right
+	{
+		width: 1050px;
+		background: #aa5528;
+		margin: 3% auto;
+	}
+	
+#header 
+	{
+		height : 100px;
+		background: #AA2828;
+	}
+	
+#content 
+	{
+		height : 700px;
+		background: #28AA28;
+	}
+	
+#footer 
+	{
+		height : 100px;
+		background: #2828AA;
+	}

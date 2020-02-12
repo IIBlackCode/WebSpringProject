@@ -43,7 +43,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO readMember(String userid) throws Exception {
 		// TODO Auto-generated method stub
 		System.out.println("readMember() Method Run..");
-		MemberVO memberVO = sqlSession.selectOne(namespace+".readMember",userid);
+		MemberVO memberVO = sqlSession.selectOne(namespace+".selectMember",userid);
 		System.out.println("The End of Read Member()");
 		return memberVO;
 	}

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
@@ -22,20 +23,27 @@ public class TEST7_MemberDAOTest3 {
 	@Inject
 //	root-context.xml에 등록된 SqlSessionFactory 주입
 	private MemberDAO memberDAO;
-
+	
 	private static final Logger logger = LoggerFactory.getLogger(TEST7_MemberDAOTest3.class);
 	
 	@Test 
 	public void testReadMember1() throws Exception {
 		
-//		System.out.println(memberDAO.readMember("testID_00"));
-		logger.info("[readMember] :",memberDAO.readMember("testID_00"));
+		MemberVO memberRead = new MemberVO();
+		memberRead = memberDAO.readMember("testID_00");
+		
+		logger.info("[readMember] :",memberRead);
+		System.out.println(memberRead);
 	}
 	
 	@Test 
 	public void readWithPW() throws Exception {
 		
-		logger.info("[readMember] :",memberDAO.readWithPW("testID_00", "testPW_00"));
+		MemberVO memberReadWithPW = new MemberVO();
+		memberReadWithPW = memberDAO.readWithPW("testID_00", "testPW_00");
+		
+		logger.info("[readMember] :",memberReadWithPW);
+		System.out.println(memberReadWithPW);
 		
 	}
 }

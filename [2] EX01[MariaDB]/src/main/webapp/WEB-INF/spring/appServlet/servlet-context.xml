@@ -13,7 +13,41 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/resources/**" location="/resources/"/>
+	
+	<!-- [9] 160. PAGE MyBatis를 사용하기 위해 DataSource를 root-context.xml를 사용해서 등록 > DataSource 테스트 진행 -->
+    <beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <!-- <property name="driverClassName" value="org.mariadb.jdbc.Driver"/> -->
+        <beans:property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"/><!-- 139page 수정 -->
+        <beans:property name="url" value="jdbc:mariadb://192.168.219.130:3306/book_ex?useSSL=false"/>
+        <beans:property name="username" value="root"/>
+        <beans:property name="password" value="1234"/>
+    </beans:bean>
+    
+    <!-- [10] 176. PAGE Spring Mybatis 연동 설정 -->
+    <beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		
+		<beans:property name="dataSource" ref="dataSource"/>
+		
+		<!-- [page 93 Mybatis Test Code : MybatisTest.class] -->
+		<beans:property name="configLocation" value="classpath:/mybatis-config.xml"/>
+		
+		<!-- [page 132] Mapper 경로 등록-->
+		<beans:property name="mapperLocations" value="classpath:org/zerock/**/A4_Mapper/*Mapper.xml"/>
+	</beans:bean>
+	
+	<!-- 
+    	[10] 176. PAGE
+		[page 134] sqlSession 추가 Test code : MemberDAOimpl 
+		SQL문 실행할 sqlSession추가해서 DAO를 구현한 클래스에서 동작한다.
+	-->
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" 
+		destroy-method="clearCache">
+		<beans:constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/> 
+	</beans:bean>
+	
+	<!--[11] CSS 사용을 위한 추가 -->
+	<!-- <resources mapping="/style/**" location="/style/" /> -->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,8 +55,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="org.zerock.controller" />
-	
-	
+	<!-- 
+		[page 139] 등록된 경로의 하위 스캔해서 특정 어노테이션 등록 
+		@Controller, @Service, @Repository, @Component
+		@Repository에서 sqlSession으로 SQL쿼리 동작
+	-->
+	<context:component-scan base-package="spring.web.project" />
 	
 </beans:beans>
